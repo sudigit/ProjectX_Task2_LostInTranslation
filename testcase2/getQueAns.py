@@ -1,15 +1,18 @@
 import numpy as np
 import cv2
 
+#get combined image
 img = cv2.imread('combine1.jpg',cv2.IMREAD_COLOR)
 
+#convert to grayscale
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-
 cv2.imwrite('gray.jpg', gray)
 
+#convert to black and white
 ret,thresh = cv2.threshold(gray,0,255,cv2.THRESH_BINARY)
 cv2.imwrite('blackwhite.jpg',thresh)
 
+#erosion
 kernel = np.ones((5, 5), np.uint8)
 eroded = cv2.erode(thresh, kernel, iterations=12)
 cv2.imwrite('eroded.jpg', eroded)
@@ -21,6 +24,7 @@ w=int(width/6)
 #print (h)
 #print(w)
 
+#get coords when white pixels encountered then skip rows and columns
 coords=[]
 y=0
 while y<2000:
@@ -41,6 +45,7 @@ while y<2000:
 #print(coords)
 
 
+# assign que and ans
 def queans(coord):
     x,y=coord
     match x:
@@ -82,7 +87,7 @@ def queans(coord):
     return (q,a)
 
 
-
+#print que and ans
 qa=[]
 for k in coords:
     qa.append(queans(k))

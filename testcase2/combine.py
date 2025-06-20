@@ -1,9 +1,11 @@
 import cv2
 import numpy as np
 
+# images
 images1=[cv2.imread("Bhaskar.jpg"), cv2.imread("Raghav.jpg"), cv2.imread("Ganshyam.jpg")] 
 images2=[cv2.imread("Chintan.png"), cv2.imread("Om.png"), cv2.imread("Yash.png")]
 
+#check all heights,widths same and get height,width
 height, width = images1[0].shape[:2]
 print(height, width)
 #height, width = images1[1].shape[:2]
@@ -18,15 +20,15 @@ print(height, width)
 #print(height, width)
 
 
-
+#combine images in images1 
 image1 = np.zeros((height, width,3), dtype=np.uint8)
 for y in range(0,height):
     for x in range(0,width):
         for i in range(0,3):
                 image1[y,x][i] = images1[0][y,x][i] + images1[1][y,x][i] + images1[2][y,x][i]
-
 cv2.imwrite("combine1.jpg", image1)
 
+#combine images in images2
 image2 = np.zeros((height, width, 3), dtype=np.uint8)
 for y in range(0,height):
     for x in range(0,width):
