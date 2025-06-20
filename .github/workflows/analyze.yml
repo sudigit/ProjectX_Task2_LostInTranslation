@@ -8,16 +8,14 @@ jobs:
   check:
     runs-on: ubuntu-latest
 
-
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Checkout code
-      uses: actions/checkout
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-    - name: Set up Python
-      uses: actions/setup-python
-      with:
-          python-version: '3.13.5'
-
-    - name: run analyze
-      run: python analyze.py
+      - name: Run analyze
+        run: python analyze.py
