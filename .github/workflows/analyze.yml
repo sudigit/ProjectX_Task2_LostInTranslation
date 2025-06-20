@@ -7,6 +7,17 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+
+
     steps:
+
+    - name: Checkout code
+      uses: actions/checkout
+
+    - name: Set up Python
+      uses: actions/setup-python
+      with:
+          python-version: '3.13.5'
+
     - name: run analyze
       run: python analyze.py
