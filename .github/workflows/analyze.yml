@@ -1,0 +1,12 @@
+name: Analyze files
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: run analyze
+      run: python analyze.py
