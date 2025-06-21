@@ -46,9 +46,12 @@ def getrisk(filepath):
     print(f"{filepath}: {risk}")
 
 
+
+
 #get directory and the src folder
 dir = os.path.dirname(__file__)
 folder = os.path.join(dir, 'src')
+
 
 #go through files in folder
 for filename in os.listdir(folder):
