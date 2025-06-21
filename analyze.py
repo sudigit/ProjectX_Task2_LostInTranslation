@@ -6,7 +6,7 @@ def getrisk(filepath):
     forb = False
     risk = ""
 
-    with open(filepath, 'r', encoding='utf-8') as file:
+    with open(filepath, 'r') as file:
         for line in file:
 
             #line length
