@@ -9,23 +9,29 @@ def getrisk(filepath):
     with open(filepath, 'r') as file:
         for line in file:
 
-            #line length
+            #---line length---
             if line=="\n":
                 #print("new")
                 continue
             
-            checkline=line
+            #print(len(line))
+            if line.endswith('\n'):
+                checkline=line[:-1]
+            else:
+                checkline=line
+            
             while checkline.endswith(" "):
                 checkline=checkline[:-1]
-            #print(checkline)
+            #print(len(checkline))
 
             if len(checkline) > 80:
                 count += 1
 
-            #remove comment
+
+            #---remove comment---
             x = line.split("#")[0]
 
-            #check forbidden keywords
+            #---check forbidden keywords---
             if "print(" in x:
                 forb = True
                 count += 1
@@ -36,11 +42,11 @@ def getrisk(filepath):
                 forb = True
                 count += 1
 
-            #check odd no of double quotes
+            #---check odd no of double quotes---
             if x.count('"') % 2 != 0:
                 count += 1
 
-            #check check odd no of single quotes
+            #---check odd no of single quotes---
             if x.count("'") % 2 != 0:
                 count += 1
 
