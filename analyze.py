@@ -10,7 +10,16 @@ def getrisk(filepath):
         for line in file:
 
             #line length
-            if len(line) > 80:
+            if line=="\n":
+                #print("new")
+                continue
+            
+            checkline=line
+            while checkline.endswith(" "):
+                checkline=checkline[:-1]
+            #print(checkline)
+
+            if len(checkline) > 80:
                 count += 1
 
             #remove comment
