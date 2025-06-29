@@ -56,11 +56,11 @@ for text in tests:
     
     for token in doc:
         if token.is_alpha and token.text.lower() not in english_vocab and token.text not in nouns:  #does not identify words with numbers
-            print(token)
+            #print(token)
             corrected = corrected + " " + fix_let(token.text)
         elif not token.is_alpha:
             if not token.text.isdigit():
-                print(token)
+                #print(token)
                 corrected = corrected + " " + fix_num(token.text)
             else:
                 corrected = corrected + " " + token.text
