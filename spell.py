@@ -5,6 +5,7 @@ from nltk.corpus import words
 nltk.download('words')
 
 nlp = spacy.load("en_core_web_sm")
+english_vocab = set(w.lower() for w in words.words())
 
 #taken from nouns.py but separated the nouns with more than 1 word
 nouns=['April', 'Sundar', 'Pichai', 'Google', 'AI', 'Gemini', 'Barack', 'Obama', 'Harvard', 'University', 'X', 'Veermata', 'Jijabai', 'Technological', 'Institute', 'Mumbai', 'BTech', 'Mechanical', 'Engineering', 'VJTI']
@@ -40,8 +41,13 @@ def fix_num(word):
             #print(corrected)
     return corrected
 
+def isdig(word):
+    for char in word:
+        if char.isdigit():
+            return True
+        else:
+            return False
 
-english_vocab = set(w.lower() for w in words.words())
 
 for text in tests:
     doc = nlp(text)
@@ -52,10 +58,12 @@ for text in tests:
         if token.is_alpha and token.text.lower() not in english_vocab and token.text not in nouns:  #does not identify words with numbers
             print(token)
             corrected = corrected + " " + fix_let(token.text)
-        elif '0' in token.text or '1' in token.text or '5' in token.text:
+        elif not token.is_alpha:
             if not token.text.isdigit():
                 print(token)
                 corrected = corrected + " " + fix_num(token.text)
+            else:
+                corrected = corrected + " " + token.text
         else:
             corrected = corrected + " " + token.text
     
