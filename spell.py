@@ -8,9 +8,6 @@ nlp = spacy.load("en_core_web_sm")
 
 english_vocab = set(w.lower() for w in words.words())
 
-#taken from nouns.py but separated the nouns with more than 1 word
-nouns=['April', 'Sundar', 'Pichai', 'Google', 'AI', 'Gemini', 'Barack', 'Obama', 'Harvard', 'University', 'X', 'Veermata', 'Jijabai', 'Technological', 'Institute', 'Mumbai', 'BTech', 'Mechanical', 'Engineering', 'VJTI']
-
 tests=["""In April 2023, Sundar Pichai did announce that Google would be launehing a new AI product namcd Gemini.
 Barack Obama also gave a speech at Harvard University, cmphasizing the role of technology in modern education.""", """Project X is an exclusive elub at Veermata Jijabai Technological Institute, Mumbai, mcant to 5erve as a healthy environment for 5tudents to learn from each other and grow together.
 Through the guidance of their mcntor these 5tudents are able to complete daunting tasks in a relatively short time frame, gaining significant exposure and knowledge in their domain of choice.""", """I will be eompleting my BTech dcgree in Mechanical Engineering from VJTI in 2028""", "However the rcsults were clear"]
@@ -44,7 +41,7 @@ for text in tests:
     corrected=""
     
     for token in doc:
-        if token.text.lower() not in english_vocab and not token.text.isdigit() and token.text not in nouns: 
+        if token.text.lower() not in english_vocab and not token.text.isdigit() and not token.text[0].isupper(): 
             #print(token)
             corrected = corrected + fix_er(token.text) + " "
         else:
